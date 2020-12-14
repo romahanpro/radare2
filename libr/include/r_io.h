@@ -207,6 +207,7 @@ typedef struct r_io_map_t {
 	int fd;
 	int perm;
 	ut32 id;
+	ut64 ts;
 	RInterval itv;
 	ut64 delta; // paddr = vaddr - itv.addr + delta
 	char *name;
