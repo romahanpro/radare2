@@ -155,6 +155,10 @@ R_API int r_sys_fork(void) {
 R_API int r_sys_sigaction(int *sig, void (*handler) (int)) {
 	return -1;
 }
+#elif __wasi__
+R_API int r_sys_sigaction(int *sig, void (*handler)(int)) {
+	return 0;
+}
 #elif HAVE_SIGACTION
 R_API int r_sys_sigaction(int *sig, void (*handler) (int)) {
 	struct sigaction sigact = { };
@@ -178,10 +182,6 @@ R_API int r_sys_sigaction(int *sig, void (*handler) (int)) {
 			return ret;
 		}
 	}
-	return 0;
-}
-#elif __wasi__
-R_API int r_sys_sigaction(int *sig, void (*handler)(int)) {
 	return 0;
 }
 #else
