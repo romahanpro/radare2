@@ -1,6 +1,11 @@
 /******************************************************************************/
 #ifdef JEMALLOC_H_TYPES
 
+#ifdef __wasi__
+// #define nstime_t time_t
+#define JM_NBINS 1
+#endif
+
 typedef struct nstime_s nstime_t;
 
 /* Maximum supported number of seconds (~584 years). */
